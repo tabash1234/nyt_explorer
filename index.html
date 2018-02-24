@@ -1,21 +1,204 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Hello, world!</title>
-    <!-- Required meta tags -->
+
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <title>NYT explorer</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+    <style type="text/css">
+        .previews {
+            width: 100%;
+			background-color: #eee;	
+        }
+		
+		.search {
+			margin-bottom: 20px;}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  </body>
+        .page {
+            display: flex;
+			margin 20px;
+			right:30px;
+        }
+
+        .master {
+            float: left;
+            width: 80%;
+        }
+
+        .details {
+            float: left;
+            width: 20%;
+            background-color: #FAE9C7;
+            color: #2C2009;
+            font-weight: bold;
+			word-wrap: break-word;
+			padding: 30px;
+			
+        }
+		
+		.card{
+		vertical-align:top;
+		display: inline-block;
+		width: 170px;
+		height: 240px;
+		margin: 10px;
+		box-shadow: 3px 3px 2px #ddd;
+		background-color: white;
+		cursor: pointer;
+		text-align: center;
+		color: #262626;
+		font-size: 12x;
+		padding:10px;
+		}
+		
+		ul{
+		list-style-type:square;
+		}
+		
+		.picture{
+		height: 170px;
+		width: 170px;
+		}
+
+		
+    </style>
+</head>
+
+<body>
+    <h1>Explore NYT archives!</h1>
+	<div class='search'>
+	  <input type='number' placeholder='year' id='year'> <input type='number' placeholder='month' id='month'><button onclick= "find()">Find</button>
+	</div>
+    <div id="root">
+    </div>
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+            constructor(props){
+                super(props)
+
+                this.state = {
+                    data: [],
+                    selectedArticle: {
+						id: '',
+						headline: '',
+                        snippet: '',
+                        word_count: '',
+                        pub_date: '',
+                        web_url: ''
+                    }
+                };
+
+                this.setData = this.setData.bind(this);
+                this.handleArticleClick = this.handleArticleClick.bind(this);
+            }
+
+            handleArticleClick(item){
+                this.setState({selectedArticle: item})
+            }
+
+            setData(newData){
+				let article = [];
+				for(var i = 0; i < 20; i++) {
+				const doc = newData.response.docs[i];
+				article.push(doc);
+				}
+				console.log(newData);
+                this.setState({data: article});
+            }
+
+            componentDidMount(){
+			$.ajax({
+              url: 'https://api.nytimes.com/svc/archive/v1/' +  document.getElementById('year').value + "/" + document.getElementById('month').value + ".json",
+              method: 'GET',
+              data: {
+                  'api-key': "2ad417c011a6487eb5483e0b98c4d096"
+              },
+              success: this.setData
+			});
+        }
+
+            render(){
+                return (
+                    <div className="page">
+                        <div className="master">
+                            <ArticleResults
+                                selectionHandler={this.handleArticleClick} 
+                                data={this.state.data}/>
+                        </div>
+                        <div className="details">
+                            <ArticleDetails
+                                artc={this.state.selectedArticle}/>
+                        </div>
+                    </div>
+                );
+            }
+
+        }
+
+        const ArticleDetails = (props) => {
+            const artc = props.artc;
+
+            return (
+                <div>
+                    <ul>
+						<h1>{artc.headline.main}</h1>
+                        <li>ID: {artc._id}</li>                        
+                        <p>Preview: {artc.snippet}</p>
+						<li>Word count:{artc.word_count}</li>
+                        <li>Pub date: {artc.pub_date}</li>
+                        <li>Url: {artc.web_url}</li>
+                    </ul>
+                </div>
+            );
+        }
+
+        class Article extends React.Component{
+
+            render(){
+                const artBlock = this.props.item;
+                const clickHandler = this.props.clickHandler;
+                const block =
+                    <div className='card' onClick={() => clickHandler(artBlock)}>
+					<div><img className='picture' src="https://pbs.twimg.com/profile_images/942784892882112513/qV4xB0I3.jpg" alt="NYT logo"/>
+					</div>
+                    {artBlock.headline.main}
+                    </div>;
+                return block;
+            }
+        }
+
+        class ArticleResults extends React.Component {
+
+            render() {
+                const articles = this.props.data;
+
+                const grid =
+                    <div className='previews'>
+                            {
+                                articles.map(
+                                    (artc, index) => <Article
+                                        key={index}
+                                        item={artc}
+                                        clickHandler={this.props.selectionHandler} />
+                                )
+                            }
+                    </div>;
+                 return grid;
+            }
+        }
+
+        function find(){
+        const root = document.getElementById('root');
+        ReactDOM.render(<App />,  root);
+      }
+    </script>
+</body>
+
 </html>
