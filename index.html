@@ -27,42 +27,48 @@
 
         .master {
             float: left;
-            width: 80%;
+            width: 82%;
         }
 
         .details {
             float: left;
-            width: 20%;
+            width: 18%;
             background-color: #FAE9C7;
             color: #2C2009;
             font-weight: bold;
 			word-wrap: break-word;
-			padding: 30px;
+			padding: 20px;
 			
         }
 		
 		.card{
-		vertical-align:top;
-		display: inline-block;
-		width: 170px;
-		height: 240px;
-		margin: 10px;
-		box-shadow: 3px 3px 2px #ddd;
-		background-color: white;
-		cursor: pointer;
-		text-align: center;
-		color: #262626;
-		font-size: 12x;
-		padding:10px;
+		  vertical-align:top;
+		  display: inline-block;
+		  width: 170px;
+		  height: 300px;
+		  margin: 10px;
+		  box-shadow: 3px 3px 2px #ddd;
+		  background-color: white;
+		  cursor: pointer;
+		  text-align: center;
+		  font-weight: bold;
+		  color: #262626;
+		  padding:10px;
 		}
 		
 		ul{
-		list-style-type:square;
+		  list-style-type:square;
 		}
 		
 		.picture{
-		height: 170px;
-		width: 170px;
+		  height: 170px;
+		  width: 170px;
+		  object-fit: cover
+		}
+		
+		.description {
+		font-size: 11px;
+		font-weight: normal;
 		}
 
 		
@@ -103,13 +109,13 @@
                 this.setState({selectedArticle: item})
             }
 
-            setData(newData){
+            setData(requestedData){
 				let article = [];
 				for(var i = 0; i < 20; i++) {
-				const doc = newData.response.docs[i];
+				const doc = requestedData.response.docs[i];
 				article.push(doc);
 				}
-				console.log(newData);
+				console.log(requestedData);
                 this.setState({data: article});
             }
 
@@ -128,7 +134,7 @@
                 return (
                     <div className="page">
                         <div className="master">
-                            <ArticleResults
+                            <ArticleResults 
                                 selectionHandler={this.handleArticleClick} 
                                 data={this.state.data}/>
                         </div>
@@ -147,28 +153,65 @@
 
             return (
                 <div>
-                    <ul>
+                    
 						<h1>{artc.headline.main}</h1>
                         <li>ID: {artc._id}</li>                        
                         <p>Preview: {artc.snippet}</p>
 						<li>Word count:{artc.word_count}</li>
-                        <li>Pub date: {artc.pub_date}</li>
-                        <li>Url: {artc.web_url}</li>
-                    </ul>
+                        <li>Date publish: {artc.pub_date}</li>
+                        <a href={artc.web_url} target="_blank"> {artc.web_url}</a>
+                    
                 </div>
             );
         }
 
         class Article extends React.Component{
+             
+            constructor(props){
+            super(props);
+            this.state = {
+                 title: '',
+                 description: '',
+                 image: '',
+                 url: ''
+             };
+           
+             this.onSuccess = this.onSuccess.bind(this);
+       }
+           
+            onSuccess(responseData){
+               console.log(responseData);
+               let title = responseData.title;
+               let description = responseData.description;
+               let image = responseData.image;
+               this.setState({
+                   'title': title, 
+                   'description': description, 
+                   'image': image, 
+               });
+               
+           }
+         
+       componentDidMount(){
+         const apiKey = '5a8c64c90d61b6378d514d13cb6e272c6138353cff97f';
+		// const url = 'http://api.linkpreview.net/?key=123456&q=https://www.google.com';
+         const url = `http://api.linkpreview.net/?key=${apiKey}&q=${this.props.item.web_url}`;
+        $.ajax({
+          url,
+          success: this.onSuccess,
+          error: this.onError
+        });
+       }
+         
 
             render(){
                 const artBlock = this.props.item;
                 const clickHandler = this.props.clickHandler;
                 const block =
                     <div className='card' onClick={() => clickHandler(artBlock)}>
-					<div><img className='picture' src="https://pbs.twimg.com/profile_images/942784892882112513/qV4xB0I3.jpg" alt="NYT logo"/>
-					</div>
-                    {artBlock.headline.main}
+                     <div>{this.state.title}</div>
+					 <img src={this.state.image} className = 'picture'/>
+                     <div className= 'description'>{this.state.description}</div>
                     </div>;
                 return block;
             }
@@ -179,7 +222,7 @@
             render() {
                 const articles = this.props.data;
 
-                const grid =
+                const tableResults =
                     <div className='previews'>
                             {
                                 articles.map(
@@ -190,7 +233,7 @@
                                 )
                             }
                     </div>;
-                 return grid;
+                 return tableResults;
             }
         }
 
