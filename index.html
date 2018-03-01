@@ -250,8 +250,8 @@
 		   
 		restart(){
          const apiKey = '5a954263563083d29fb5278af9da98e9e7c9d3c97b9e2';
-		//const url = 'http://api.linkpreview.net/?key=123456&q=https://www.google.com';
-         const url = `http://api.linkpreview.net/?key=${apiKey}&q=${this.props.item.web_url}`;
+		//const url = 'https://api.linkpreview.net/?key=123456&q=https://www.google.com';
+         const url = `https://api.linkpreview.net/?key=${apiKey}&q=${this.props.item.web_url}`;
         $.ajax({
           url,
           success: this.onSuccess
