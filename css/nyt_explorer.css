@@ -71,7 +71,7 @@
 	.NYTimg {
 		position: absolute;	
 		right: 50px;
-		bottom:45px;
+		bottom: 45px;
 	}
 	
 	@media screen and (orientation: landscape) {
