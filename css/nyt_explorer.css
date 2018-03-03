@@ -1,1 +1,261 @@
+		html, body {
+			margin: 0px;
+			height: 100%;
+			background-color: black;
+		}
 
+		#wrapper {
+			background-color: white;
+			min-height: 80%;
+			height: auto;
+			margin-bottom: -35px;
+		}
+		
+		#root{
+			height: 100%;
+		}
+	
+		.header {	
+			font-family: 'Yeseva One', cursive;
+			display: flex;
+			justify-content: center;
+		}	
+			
+        .previews {
+            width: 100%;
+			background-color: #eee;	
+			box-shadow: inset 0 0 7px #bbb;
+			
+        }
+		
+		.search {
+			margin-bottom: 20px;
+			display: flex;
+			justify-content: center;
+		}
+		
+		.inputbox {
+			margin: 5px;
+			width: 65px;
+			height: 15px;
+			border-radius: 5px;
+			border-color: black;
+			text-align: center;
+		}
+		
+		.button {
+			margin: 5px;
+			width: 70px;
+			height: 21px;
+			background-color: black;
+			color: white;
+			border-radius: 5px;
+			border-color: black;
+		}
+
+		.footer {
+			display: flex;
+			position: relative;
+			justify-content: center;
+			bottom: -55px;
+			width: 100%;
+			height: 40px;
+			font-size: 14px;
+			line-height: 60%;
+			text-align: center;
+			color: white;
+			font-family: 'Vollkorn SC', serif;
+		}
+		
+		@media screen and (orientation: landscape) {
+		
+		.page {
+            display: flex;
+		}
+		
+        .master {
+            float: left;
+            width: 82%;
+        }
+
+        .details {
+            float: left;
+            width: 18%;
+            background-color: #FAE9C7;
+            color: #2C2009;
+            font-weight: bold;
+			word-wrap: break-word;
+			padding: 20px;	
+        }
+		
+		.sidebar {
+			position: sticky;
+			top:20px;
+			font-size: 1.2vw;
+		}
+		
+		.sidebar h1 {
+			font-family: 'Limelight', cursive;
+		}
+		
+		.sidebar p {
+			font-family: 'Averia Serif Libre', cursive;
+		}
+		
+		.sidebar li {
+			font-family: 'Averia Serif Libre', cursive;
+			color: #7a7674;
+			font-size: 12px;
+		}
+		
+		.sidebar a {
+			font-family: 'Averia Serif Libre', cursive;
+			color: #752610;
+			font-size: 15px;
+		}
+		
+		.card {
+			vertical-align:top;
+			display: inline-block;
+			width: 21%;
+			height: 307px;
+			margin: 10px;
+			box-shadow: 3px 3px 2px #ddd;
+			background-color: white;
+			cursor: pointer;
+		    color: #262626;
+		    padding:10px;
+		}
+		
+		.picture {
+			height: 170px;
+			width: 100%;		   
+			object-fit: cover
+		}
+		
+		.description {
+			font-size: 12px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-height: 75px;
+			text-align: center;
+			word-wrap: break-word;
+			font-family: 'Averia Serif Libre', cursive;
+		}
+		
+		.artTitle {
+			font-weight: bold;
+			font-size: 15px;
+			font-family: 'Vollkorn SC', serif;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			word-wrap: break-word;		
+			height: 60px;
+			text-align: center;
+		}		
+		
+		
+	}
+	
+	@media screen and (orientation: portrait) {
+	
+		.page {
+            display: absolute;
+			width: 100%;
+		}
+		
+	
+       .details {
+			position: sticky;
+			display: flex;
+			bottom: 1em;		
+			width: 97%;
+			min-height: 230px;
+			height:auto;
+            background-color: #FAE9C7;
+            color: #2C2009;
+			word-wrap: break-word;
+			padding-left: 3%;
+			padding-bottom: 3%;
+			font-size: 12px;
+			
+        }
+		
+		.sidebar h1 {
+			font-family: 'Limelight', cursive;
+		}
+		
+		.sidebar p {
+			font-family: 'Averia Serif Libre', cursive;
+			width: 95%;
+		}
+		
+		.sidebar li {
+			font-family: 'Averia Serif Libre', cursive;
+			color: #7a7674;
+			font-size: 12px;
+		}
+		
+		.sidebar a {
+			font-family: 'Averia Serif Libre', cursive;
+			color: #752610;
+			font-size: 15px;
+		}
+		
+		.header {	
+			font-family: 'Yeseva One', cursive;
+			display: flex;
+			justify-content: center;
+			font-size: 3vw;
+			
+		}	
+		
+		.card {
+			vertical-align:top;
+			display: inline-block;
+			width: 97%;
+			height: 150px;
+			margin-top:10px;
+			box-shadow: 3px 3px 2px #ddd;
+			background-color: white;
+			cursor: pointer;
+		    color: #262626;
+			padding-left: 3%;
+			padding-top: 3%;
+		    
+		}
+		
+		.picture {
+			height: 100px;
+			width: 30%;		   
+			object-fit: cover
+		}
+		
+		.description {
+			margin-left:10px;
+			font-size: 15px;
+			vertical-align:top;
+			display: inline-block;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			max-height: 100px;
+			text-align: left;
+			word-wrap: break-word;
+			max-width: 60%;
+			font-family: 'Averia Serif Libre', cursive;
+		}
+		
+		.artTitle {
+			font-weight: bold;
+			font-size:23px;
+			font-family: 'Vollkorn SC', serif;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			word-wrap: break-word;		
+			height: 30px;
+			text-align: left;
+			padding-right:3%
+		}
+		
+		
+	}
