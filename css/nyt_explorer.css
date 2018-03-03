@@ -1,139 +1,151 @@
-		html, body {
-			margin: 0px;
-			height: 100%;
-			background-color: black;
-		}
+	html, body {
+		margin: 0px;
+		height: 100%;
+		background-color: black;
+	}
 
-		#wrapper {
-			background-color: white;
-			min-height: 80%;
-			height: auto;
-			margin-bottom: -35px;
-		}
-		
-		#root{
-			height: 100%;
-		}
+	.wrapper {
+		margin-bottom: -35px;
+		min-height: 80%;
+		height: auto;
+		background-color: white;
+	}
 	
-		.header {	
-			font-family: 'Yeseva One', cursive;
-			display: flex;
-			justify-content: center;
-		}	
-			
-        .previews {
-            width: 100%;
-			background-color: #eee;	
-			box-shadow: inset 0 0 7px #bbb;
-			
-        }
-		
-		.search {
-			margin-bottom: 20px;
-			display: flex;
-			justify-content: center;
-		}
-		
-		.inputbox {
-			margin: 5px;
-			width: 65px;
-			height: 15px;
-			border-radius: 5px;
-			border-color: black;
-			text-align: center;
-		}
-		
-		.button {
-			margin: 5px;
-			width: 70px;
-			height: 21px;
-			background-color: black;
-			color: white;
-			border-radius: 5px;
-			border-color: black;
-		}
+	.header {
+		display: flex;		
+		font-family: 'Yeseva One', cursive;
+		justify-content: center;
+	}
+	
+	.search {
+		display: flex;
+		margin-bottom: 20px;
+		justify-content: center;
+	}
+	
+	.inputbox {
+		margin: 5px;
+		width: 65px;
+		height: 15px;
+		border-radius: 5px;
+		border-color: black;
+		text-align: center;
+		font-family: 'Averia Serif Libre', cursive;
+	}
+	
+	.button {
+		margin: 5px;
+		width: 70px;
+		height: 21px;
+		background-color: black;
+		border-radius: 5px;
+		border-color: black;
+		color: white;
+		font-family: 'Averia Serif Libre', cursive;
+		cursor: pointer;
+	}
 
-		.footer {
-			display: flex;
-			position: relative;
-			justify-content: center;
-			bottom: -55px;
-			width: 100%;
-			height: 40px;
-			font-size: 14px;
-			line-height: 60%;
-			text-align: center;
-			color: white;
-			font-family: 'Vollkorn SC', serif;
-		}
-		
-		@media screen and (orientation: landscape) {
+	#root {
+		height: 100%;
+	}
+	
+	.previews {
+		background-color: #eee;	
+		box-shadow: inset 0 0 7px #bbb;
+	}
+
+	.footer {
+		display: flex;
+		position: relative;
+		bottom: -55px;
+		width: 100%;
+		height: 40px;
+		justify-content: center;
+		line-height: 60%;
+		font-size: 14px;
+		text-align: center;
+		color: #FAE9C7;
+		font-family: 'Vollkorn SC', serif;
+	}
+	
+	.NYTimg {
+		position: absolute;	
+		right: 50px;
+		bottom:45px;
+	}
+	
+	@media screen and (orientation: landscape) {
 		
 		.page {
-            display: flex;
+			display: flex;
 		}
 		
-        .master {
-            float: left;
-            width: 82%;
+        .container {
+			float: left;
+			width: 82%;
         }
 
         .details {
-            float: left;
-            width: 18%;
-            background-color: #FAE9C7;
-            color: #2C2009;
-            font-weight: bold;
-			word-wrap: break-word;
-			padding: 20px;	
-        }
+			padding: 20px;
+			width: 18%;
+			background-color: #FAE9C7;
+		}
 		
 		.sidebar {
 			position: sticky;
 			top:20px;
+			color: #2C2009;
+			word-wrap: break-word;
+			font-weight: bold;
 			font-size: 1.2vw;
+			font-family: 'Averia Serif Libre', cursive;
 		}
 		
 		.sidebar h1 {
 			font-family: 'Limelight', cursive;
 		}
 		
-		.sidebar p {
-			font-family: 'Averia Serif Libre', cursive;
-		}
-		
-		.sidebar li {
-			font-family: 'Averia Serif Libre', cursive;
+		.sidebar li {	
 			color: #7a7674;
 			font-size: 12px;
 		}
 		
-		.sidebar a {
-			font-family: 'Averia Serif Libre', cursive;
+		.sidebar a {	
 			color: #752610;
 			font-size: 15px;
 		}
 		
-		.card {
-			vertical-align:top;
+		.artCard {
+			vertical-align: top;
 			display: inline-block;
+			margin: 10px;
+			padding: 10px;
 			width: 21%;
 			height: 307px;
-			margin: 10px;
 			box-shadow: 3px 3px 2px #ddd;
 			background-color: white;
 			cursor: pointer;
-		    color: #262626;
-		    padding:10px;
 		}
 		
-		.picture {
+		.artTitle {
+			height: 60px;
+			color: #752610;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			word-wrap: break-word;
+			text-align: center;
+			font-weight: bold;
+			font-size: 15px;
+			font-family: 'Vollkorn SC', serif;
+		}
+		
+		.artPicture {
 			height: 170px;
 			width: 100%;		   
 			object-fit: cover
 		}
 		
-		.description {
+		.artDescription {
 			font-size: 12px;
 			text-overflow: ellipsis;
 			overflow: hidden;
@@ -142,120 +154,100 @@
 			word-wrap: break-word;
 			font-family: 'Averia Serif Libre', cursive;
 		}
-		
-		.artTitle {
-			font-weight: bold;
-			font-size: 15px;
-			font-family: 'Vollkorn SC', serif;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			word-wrap: break-word;		
-			height: 60px;
-			text-align: center;
-		}		
-		
-		
 	}
 	
 	@media screen and (orientation: portrait) {
 	
-		.page {
-            display: absolute;
-			width: 100%;
+		.header {	
+			display: flex;
+			justify-content: center;
+			font-family: 'Yeseva One', cursive;
+			font-size: 3vw;	
 		}
-		
 	
        .details {
 			position: sticky;
 			display: flex;
-			bottom: 1em;		
+			bottom: 1em;
+			padding-left: 3%;
+			padding-bottom: 3%;
 			width: 97%;
-			min-height: 230px;
-			height:auto;
+			min-height: 190px;
+			height: auto;
             background-color: #FAE9C7;
             color: #2C2009;
 			word-wrap: break-word;
-			padding-left: 3%;
-			padding-bottom: 3%;
 			font-size: 12px;
-			
+			line-height: 60%;
         }
+		
+		.sidebar {
+			font-family: 'Averia Serif Libre', cursive;
+		}
 		
 		.sidebar h1 {
 			font-family: 'Limelight', cursive;
+			font-size: 18px;
+			line-height: 100%;
 		}
 		
 		.sidebar p {
-			font-family: 'Averia Serif Libre', cursive;
 			width: 95%;
+			line-height: 100%;
 		}
 		
 		.sidebar li {
-			font-family: 'Averia Serif Libre', cursive;
 			color: #7a7674;
 			font-size: 12px;
+			line-height: 100%;
 		}
 		
 		.sidebar a {
-			font-family: 'Averia Serif Libre', cursive;
 			color: #752610;
-			font-size: 15px;
+			font-size: 13px;
 		}
 		
-		.header {	
-			font-family: 'Yeseva One', cursive;
-			display: flex;
-			justify-content: center;
-			font-size: 3vw;
-			
-		}	
-		
-		.card {
-			vertical-align:top;
+		.artCard {
 			display: inline-block;
-			width: 97%;
-			height: 150px;
-			margin-top:10px;
-			box-shadow: 3px 3px 2px #ddd;
-			background-color: white;
-			cursor: pointer;
-		    color: #262626;
+			margin-top: 10px;
 			padding-left: 3%;
 			padding-top: 3%;
-		    
-		}
-		
-		.picture {
-			height: 100px;
-			width: 30%;		   
-			object-fit: cover
-		}
-		
-		.description {
-			margin-left:10px;
-			font-size: 15px;
-			vertical-align:top;
-			display: inline-block;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			max-height: 100px;
-			text-align: left;
-			word-wrap: break-word;
-			max-width: 60%;
-			font-family: 'Averia Serif Libre', cursive;
+			width: 97%;
+			height: 150px;
+			box-shadow: 3px 3px 2px #ddd;
+			background-color: white;
+			color: #262626;	
 		}
 		
 		.artTitle {
+			padding-right: 3%;
+			height: 30px;
 			font-weight: bold;
-			font-size:23px;
+			font-size: 23px;
 			font-family: 'Vollkorn SC', serif;
+			color: #752610;
 			text-overflow: ellipsis;
 			overflow: hidden;
-			word-wrap: break-word;		
-			height: 30px;
-			text-align: left;
-			padding-right:3%
+			word-wrap: break-word;
 		}
 		
+		.artPicture {
+			height: 100px;
+			width: 30%;		   
+			object-fit: cover;
+		}
+		
+		.artDescription {
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 10px;
+			max-height: 100px;
+			max-width: 60%;
+			font-size: 15px;
+			font-family: 'Averia Serif Libre', cursive;
+			overflow: hidden;
+			text-align: left;
+			word-wrap: break-word;
+		}
 		
 	}

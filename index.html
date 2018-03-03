@@ -8,38 +8,40 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Alice|Averia+Serif+Libre|Limelight|Playfair+Display|Playfair+Display+SC|Vollkorn+SC|Yeseva+One|Zilla+Slab+Highlight" rel="stylesheet">
-    <title>NYT explorer</title>
-	<link rel="stylesheet" type="text/css" href="css/nyt_explorer.css">
+	<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Limelight|Vollkorn+SC|Yeseva+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/nyt_explorer.css">
+	<title>NYT explorer</title>
 </head>
 
 <body>
-	<div id='wrapper'>
+	<div class='wrapper'>
 		<div class='header'>
 			<header>
 				<h1>Explore The New York Times</h1>
 				<div class='search'>
 					<input type='number' placeholder='year' id='year' class='inputbox' max='2018' min='1851'> 
-					<input type='number' placeholder='month' id='month'class='inputbox' max='12' min='1'>
+					<input type='number' placeholder='month' id='month' class='inputbox' max='12' min='1'>
 					<button onclick= 'find()' class='button'>Find</button>
 				</div>
 			</header>
 		</div>
-		<div id="root"/></div>
+		<div id='root'></div>
 	</div>
 	<div class='footer'>
 		<footer>
 			<p>Data provided by NY Times API</p>
 			<p>Links preview by LinkPreview API</p>
 			<p>Developed by Milena Tabašević</p>
+			<a href = 'http://developer.nytimes.com' target='_blank'>
+			<img class='NYTimg'src='http://static01.nytimes.com/packages/images/developer/logos/poweredby_nytimes_30b.png'>
+			</a>
 			<p>Contact: 
 				<a href='mailto:milenatabash@yahoo.com'>milenatabash@yahoo.com</a>
 			</p>
 			<br/>
 		</footer>
 	</div>
-    <script type="text/babel" src="js/nyt_explorer.js">
-    </script>
+    <script type='text/babel' src='js/nyt_explorer.js'></script>
 </body>
 
 </html>
